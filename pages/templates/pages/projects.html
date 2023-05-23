@@ -1,0 +1,58 @@
+{% extends 'pages/base.html' %}
+{% block content %}
+
+<section class="portfolio-page-section">
+    <div class="auto-container">
+        <!--MixitUp Galery-->
+        <div class="mixitup-gallery">
+            
+            <!--Filter-->
+            <div class="filters clearfix">
+                
+                <ul class="filter-tabs filter-btns text-center clearfix">
+                    {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                        <b>{{ message }}</b>
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                    <li class="active filter" data-role="button" data-filter="all">All Projects</li>
+                    {% for projects in project %}
+                    <li class="filter" data-role="button" data-filter=".{{ projects.project_type }}">{{ projects.project_type }}</li>
+                    {% endfor %}
+                </ul>
+                
+            </div>
+            
+            <div class="filter-list row clearfix">
+                
+                
+                
+                <!-- Gallery Item -->
+                {% for projects in project %}
+                <div class="gallery-item mix all {{ projects.project_type }} col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <figure class="image-box">
+                            <img src="{{ projects.project_image.url }}" alt="">
+                            <!--Overlay Box-->
+                            <div class="overlay-box">
+                                <div class="overlay-inner">
+                                    <div class="content">
+                                        <h3><a href="">{{ projects.project_title }}</a></h3>
+                                        <a href="{{ projects.project_image.url }}" data-fancybox="gallery-4" data-caption="" class="link"><span class="icon flaticon-magnifying-glass-1"></span></a>
+                                        <a href="" class="link"><span class="icon flaticon-unlink"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endblock content %}

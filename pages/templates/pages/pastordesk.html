@@ -1,0 +1,23 @@
+{% extends 'pages/base.html' %}
+{% block content %}
+
+<section class="contact-form-section">
+    <div class="auto-container">
+        <div class="sec-title">
+        <h2>From the Pastor in Charge Desk</h2>
+
+        {% for picwriteup in pic_desk %}
+        <hr>
+        <div class="lower-content">
+            <h3>{{ picwriteup.content_title }}</h3>
+            <br>
+        </div>    
+			<h4 class=""> {{ picwriteup.content }}</h4>
+            <span class="text"><li><a href=""><i>By {{ picwriteup.PIC_name }}</i></a></li></span>
+        {% endfor %}
+			
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

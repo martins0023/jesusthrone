@@ -1,0 +1,269 @@
+{% extends 'pages/base.html' %}
+{% block content %}
+
+	<section class="story-section">
+		<div class="auto-container">
+			<div class="row clearfix">
+				
+				<!-- Content Column -->
+				{% for about in aboutus %}
+				<div class="content-column col-lg-8 col-md-12 col-sm-12">
+					<div class="inner-column">
+						{% if messages %}
+						{% for message in messages %}
+							<div class="alert alert-{{ message.tags }}">
+							<b>{{ message }}</b>
+							</div>
+						{% endfor %}
+						{% endif %}
+						<h2>{{ about.heading }}</h2>
+						<div class="bold-text">{{ about.aboutIntro }}</div>
+						<div class="text">
+							<p>{{ about.Ourhistory }}</p>
+							<p>{{ about.OurhistoryP2 }}</p>
+							<P>{{ about.OurhistoryP3 }}</p>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				
+				<!-- Image Column -->
+				{% for about in aboutus %}
+				<div class="image-column col-lg-4 col-md-12 col-sm-12">
+					<div class="inner-column">
+						<div class="image">
+							<img src="{{ about.ChurchImage.url }}" alt="" />
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				
+			</div>
+		</div>
+	</section>
+	<!-- End Story Section -->
+	
+	<!-- Interior Section -->
+	<section class="interior-section style-three">
+		<div class="auto-container">
+			<div class="inner-container">
+				<div class="row clearfix">
+					
+					<!-- Image Column -->
+					{% for about in aboutus %}
+					<div class="image-column col-lg-4 col-md-12 col-sm-12">
+						<div class="inner-column">
+							<div class="image">
+								<img src="{{ about.ChurchImage2.url }}" alt="" />
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					
+					<!-- Content Column -->
+					<div class="content-column col-lg-8 col-md-12 col-sm-12">
+						<div class="inner-column">
+							<h2>Why Worship With Us This Sunday?</h2>
+							<div class="text">Faithful is he that calleth you, who also will do it. <br>1 Thessalonians 5:24 <br>Looking for a place to worship every Sunday.....</div>
+							<div class="row clearfix">
+							
+								<!-- Interior Block -->
+								<div class="interior-block col-lg-4 col-md-4 col-sm-12">
+									<div class="block-inner">
+										<div class="icon-box">
+											<span class="icon flaticon-award-1"></span>
+										</div>
+										<h3>Superb Service</h3>
+									</div>
+								</div>
+								
+								<!-- Interior Block -->
+								<div class="interior-block col-lg-4 col-md-4 col-sm-12">
+									<div class="block-inner">
+										<div class="icon-box">
+											<span class="icon flaticon-answer"></span>
+										</div>
+										<h3>Exceptional Hospitality</h3>
+									</div>
+								</div>
+								
+								<!-- Interior Block -->
+								<div class="interior-block col-lg-4 col-md-4 col-sm-12">
+									<div class="block-inner">
+										<div class="icon-box">
+											<span class="icon flaticon-hand"></span>
+										</div>
+										<h3>Unmatched Programs</h3>
+									</div>
+								</div>
+								
+							</div>
+							
+							<div class="bold-text">Come worship with us this sunday <br>@RCCG Jesus Throne, Ire-Akari Estate Soka Ibadan</div>
+							<div class="column-text">Talk to our admin for counselling and other informations.</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Interior Section -->
+	
+	<!-- Counter Section -->
+	<section class="counter-section style-two">
+		<div class="auto-container">
+		
+			<!-- Fact Counter -->
+			<div class="fact-counter">
+				<div class="row clearfix">
+
+					<!--Column-->
+					<div class="column counter-column col-lg-3 col-md-6 col-sm-12">
+						<div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+							<div class="content">
+								<div class="count-outer count-box">
+									{% for church_info in church_infos %}
+									<span class="count-text" data-speed="2500" data-stop="{{ church_info.year_founded }}">0</span>+
+									{% endfor %}
+								</div>
+								<h4 class="counter-title">Year since est, till date</h4>
+							</div>
+						</div>
+					</div>
+
+					<!--Column-->
+					<div class="column counter-column col-lg-3 col-md-6 col-sm-12">
+						<div class="inner wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
+							<div class="content">
+								<div class="count-outer count-box alternate">
+									{% for church_info in church_infos %}
+									<span class="count-text" data-speed="3000" data-stop="{{ church_info.no_of_house_fellowship_centers }}">0</span>+
+									{% endfor %}
+								</div>
+								<h4 class="counter-title">House Fellowship Centers</h4>
+							</div>
+						</div>
+					</div>
+
+					<!--Column-->
+					<div class="column counter-column col-lg-3 col-md-6 col-sm-12">
+						<div class="inner wow fadeInLeft" data-wow-delay="600ms" data-wow-duration="1500ms">
+							<div class="content">
+								<div class="count-outer count-box">
+									{% for church_info in church_infos %}
+									<span class="count-text" data-speed="3000" data-stop="{{ church_info.no_of_parishes_created }}">0</span>+
+									{% endfor %}
+								</div>
+								<h4 class="counter-title">Parishes Created</h4>
+							</div>
+						</div>
+					</div>
+					
+					<!--Column
+					<div class="column counter-column col-lg-3 col-md-6 col-sm-12">
+						<div class="inner wow fadeInLeft" data-wow-delay="900ms" data-wow-duration="1500ms">
+							<div class="content">
+								<div class="count-outer count-box">
+									<span class="count-text" data-speed="2500" data-stop="45">0</span> Days
+								</div>
+								<h4 class="counter-title">Project Delivery</h4>
+							</div>
+						</div>
+					</div>
+					-->
+
+				</div>
+			</div>
+			
+		</div>
+	</section>
+	<!-- End Counter Section -->
+	
+	<!-- Team Section -->
+	<section class="team-section style-two">
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title light centered">
+				<h2>The Ministers</h2>
+				<div class="text">Ministers and Pastorates of the church <br>&copy; <script>document.write(new Date().getFullYear());</script>.</div>
+			</div>
+			
+			<div class="clearfix">
+				
+				<!-- Team Block -->
+				{% for minist in minister %}
+				<div class="team-block col-lg-3 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="image">
+							<img src="{{ minist.minister_pic.url }}" alt="" />
+							<div class="overlay-box">
+								<ul class="social-icons">
+									<li><a href="#"><i class="fab fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+									<li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
+									<li><a href="#"><i class="fab fa-skype"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="lower-content">
+							<h3><a href="team.html">{{ minist.minister_name }}</a></h3>
+							<div class="designation">{{ minist.minister_title }}</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				
+				
+			</div>
+			
+		</div>
+	</section>
+	<!-- End Team Section -->
+	
+	<!-- Mission Section -->
+    <section class="mission-section style-two">
+		<div class="auto-container">
+			<div class="row clearfix">
+				
+				<!-- Image Column -->
+				{% for about in aboutus %}
+				<div class="image-column col-xl-3 col-lg-4 col-md-12 col-sm-12">
+					<div class="inner-column">
+						<div class="image">
+							<img src="{{ about.ChurchImage3.url }}" alt="" />
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				
+				<!-- Content Column -->
+				<div class="content-column col-xl-9 col-lg-8 col-md-12 col-sm-12">
+					<div class="inner-column">
+						<h2>Apapa Family (Oyo) Strategy</h2>
+						<div class="bold-text">we believe that faithful is he that calleth you,<br> who also will do it.</div>
+						<div class="text">Our GOAL in Jesus Embassy is to fulfill the vision of the Redeemed Christian Church of God through our STRATEGY in Jesus Embassy, and at the same time ensuring that EQUAL EMPHASIS is given to all the FIVE PURPOSES of the church: <b>Worship, Ministry, Evangelism, Fellowship, Discipleship. </b><br>In doing this, we avoid overemphasizing the purpose that best expresses the gifts and passions of the PASTOR or LEADER.</div>
+						<h3>BALANCE is the key to a HEALTHY church…<br>Jesus Embassy is organized around three simple concepts:</h3>
+						<div class="row clearfix">
+							<div class="column col-lg-6 col-md-6 col-sm-12">
+								<ul class="list-style-two">
+									<li>-  Increasing the levels of commitment</li>
+									<li>-  Participation in smaller groups</li>
+									<li>-  Continously leadership training</li>
+								</ul>
+							</div>
+							<div class="column col-lg-6 col-md-6 col-sm-12">
+								<ul class="list-style-two">
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+{% endblock content %}
