@@ -1,0 +1,700 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+{% if title %}
+    <title> {{ title }}</title>
+{% else %}
+    <title>RCCG </title>
+{% endif%}
+<!-- Stylesheets -->
+<link href="{% static 'home/css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static 'home/css/style.css' %}" rel="stylesheet">
+<link href="{% static 'home/css/responsive.css' %}" rel="stylesheet">
+
+<link rel="shortcut icon" href="{% static 'home/images/favicon.png' %}" type="image/x-icon">
+<link rel="icon" href="{% static 'home/images/favicon.png' %}" type="image/x-icon">
+
+<!-- Responsive -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+</head>
+
+<body>
+
+<div class="page-wrapper">
+    <!-- Preloader -->
+    <div class="preloader"></div>
+
+    <header class="main-header header-style-one">
+        <!--Header Top-->
+        <div class="header-top">
+            <div class="auto-container clearfix">
+                <div class="top-left clearfix">
+                    {% for church_info in church_infos %}
+                    <div class="text"><span class="icon flaticon-call-answer"></span> Get in touch with us : <a href="tel:{{ church_info.church_mobile }}" class="number">{{ church_info.church_mobile }}</a></div>
+					{% endfor %}
+                </div>
+                <div class="top-right clearfix">
+                    <!-- Info List -->
+					<ul class="info-list">
+                        <li><a href="{% url 'about'%}">Our Story</a></li>
+                        <li><a href="{% url 'project'%}">Inspiration</a></li>
+						<li class="quote"><a href="{% url 'contact'%}">Get Free Quote</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End Header Top -->
+
+        <!-- Header Upper -->
+        <div class="header-upper">
+            <div class="inner-container">
+                <div class="auto-container clearfix">
+                    <!--Info-->
+                    <div class="logo-outer">
+                        <div class="logo"><a href="{% url 'home' %}"><img src="{% static 'home/images/tlogo.png' %}" alt="" title=""></a></div>
+                    </div>
+
+                    <!--Nav Box-->
+                    <div class="nav-outer clearfix">
+                        <!--Mobile Navigation Toggler For Mobile--><div class="mobile-nav-toggler"><span class="icon flaticon-menu-1"></span></div>
+                        <nav class="main-menu navbar-expand-md navbar-light">
+                            <div class="navbar-header">
+                                <!-- Togg le Button -->      
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="icon flaticon-menu-1"></span>
+                                </button>
+                            </div>
+                            
+                            <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
+                                <ul class="navigation clearfix">
+                                    <li class="current dropdown"><a href="{% url 'home' %}">Home</a>
+                                    </li>
+
+									<li class="dropdown"><a href="{% url 'about' %}">About us</a>
+                                    </li>
+
+                                    <li class="dropdown"><a href="{% url 'project' %}">Projects</a>
+                                    </li>
+
+									<li class="dropdown"><a href="{% url 'blog' %}">Blog</a>
+                                    </li>
+
+									<li class="dropdown"><a href="{% url 'onlinegiving' %}">Online Giving</a>
+                                    </li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <!-- Main Menu End-->
+						
+						<!-- Outer Box -->
+                        <div class="outer-box clearfix">
+                            <div class="search-box-btn"><span class="icon flaticon-magnifying-glass-1"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Header Upper-->
+
+    	<!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><span class="icon flaticon-cancel"></span></div>
+            
+            <nav class="menu-box">
+                <div class="nav-logo"><a href=""><img src="{% static 'pages/images/tlogo.png' %}" alt="" title=""></a></div>
+                <ul class="navigation clearfix"><!--Keep This Empty / Menu will come through Javascript--></ul>
+				<!--Social Links-->
+				<div class="social-links">
+					<ul class="clearfix">
+						{% for church_info in church_infos %}
+							<li><a href="{{ church_info.church_twitter_acct }}"><span class="fab fa-twitter"></span></a></li>
+							<li><a href="{{ church_info.church_facebook_acct }}"><span class="fab fa-facebook-square"></span></a></li>
+							<li><a href="{{ church_info.church_instagram_acct }}"><span class="fab fa-instagram"></span></a></li>
+							<li><a href="{{ church_info.church_youtube_acct }}"><span class="fab fa-youtube"></span></a></li>
+						{% endfor %}
+					</ul>
+                </div>
+            </nav>
+        </div><!-- End Mobile Menu -->
+
+    </header>
+    <!-- End Main Header -->
+
+    <!-- Main Slider -->
+	<section class="main-slider">
+		<div class="slider-box">
+		
+			<!-- Banner Carousel -->
+			<div class="banner-carousel owl-theme owl-carousel">
+			
+				<!-- Slide -->
+				{% for background in backgroundslider %}
+				<div class="slide">
+                	<div class="image-layer" style="background-image:url({{ background.image_slider.url }})"></div>
+					<div class="auto-container">
+						<div class="content">
+							<h2>{{ background.background_slider_title }}</h2>
+							<div class="text">{{ background.background_slider_info }}</div>
+							<div class="btns-box">
+								<a href="#" class="theme-btn btn-style-one"><span class="txt">Know more</span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				
+			</div>
+			
+		</div>
+	</section>
+	<!-- End Banner Section -->
+	
+	<!-- Services Section -->
+	<section class="services-section">
+		<div class="auto-container">
+			<!-- Title Box -->
+			<div class="title-box">
+				{% if messages %}
+				{% for message in messages %}
+					<div class="alert alert-{{ message.tags }}">
+					<b>{{ message }}</b>
+					</div>
+				{% endfor %}
+				{% endif %}
+				<h2>Awesome programs that improves & explore radiance.<br><u>Upcoming Programs</u></h2>
+			</div>
+			
+			<div class="row clearfix">
+				
+				<!-- Service Block -->
+				{% for prog in program|slice:":3" %}
+				<div class="service-block col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="image">
+							<a href=""><img src="{{ prog.program_image.url }}" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							<h3><a href="">{{ prog.program_title }}</a></h3>
+							<div class="text">{{ prog.program_info }}</div>
+							<a href="" class="read-more">Read more</a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				
+			</div>
+			
+		</div>
+	</section>
+	<!-- End Services Section -->
+	
+	<!-- Services Section Two -->
+	<section class="services-section-two">
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title">
+				<h2><u>RCCG VISION/MISSION STATEMENT</u></h2>
+				<p class="text"><b>The Mission Statements of The Redeemed Christian Church of God.</b></p>
+				<div class="text">1. To make Heaven.</div>
+				<div class="text">2. To take as many people as possible.</div>
+				<div class="text">3. To have a member of RCCG in every family of all nations.</div>
+				<div class="text">4. To achieve No.1, Holiness must be our lifestyle.</div>
+				<div class="text">5. To accomplish No.2 & 3, we will plant churches within 5 minutes walking distance in every city and town in developing nations and 5 minutes driving distance in developed countries.</div>
+				<div class="text">6. To pursue these objectives until every nation in the world is reached for the Lord Jesus Christ.</div>
+			</div>
+			
+			<div class="row clearfix">
+				
+				<!-- Service Block -->
+				<div class="service-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="content">
+							<div class="icon-box">
+								<span class="icon flaticon-desk-1"></span>
+							</div>
+							<h3><a href="">Pastor's Desk</a></h3>
+							{% for picwriteup in pic_desk %}
+							<div class="text">{{ picwriteup.content|slice:":110" }}</div>
+							{% endfor %}
+							<a href="{% url 'pastordesk' %}" class="read-more">Read More</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Service Block -->
+				<div class="service-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
+						<div class="content">
+							<div class="icon-box">
+								<span class="icon flaticon-house-1"></span>
+							</div>
+							<h3><a href="">House Fellowship</a></h3>
+							<div class="text">At RCCG Jesus Throne Apapa Family, you get to worship and fellowship at the nearest fellowship center close to you every Sunday evening.</div>
+							<a href="" class="read-more">Read More</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Service Block -->
+				<div class="service-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInLeft" data-wow-delay="600ms" data-wow-duration="1500ms">
+						<div class="content">
+							<div class="icon-box">
+								<span class="icon flaticon-shop"></span>
+							</div>
+							<h3><a href="">Church Growth</a></h3>
+							<div class="text">The Church development and growth.</div>
+							<a href="{% url 'about' %}" class="read-more">Read More</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Service Block -->
+				<div class="service-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInRight" data-wow-delay="300ms" data-wow-duration="1500ms">
+						<div class="content">
+							<div class="icon-box">
+								<span class="icon flaticon-apartment-1"></span>
+							</div>
+							<h3><a href="">Inside Jesus Throne</a></h3>
+							<div class="text">Visit us at RCCG Jesus Throne Apapa Family, soka area, Ibadan, Oyo State.</div>
+							<a href="{% url 'contact' %}" class="read-more">Read More</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Service Block -->
+				<div class="service-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInRight" data-wow-delay="600ms" data-wow-duration="1500ms">
+						<div class="content">
+							<div class="icon-box">
+								<span class="icon flaticon-hotel"></span>
+							</div>
+							<h3><a href="">Church Hospitality</a></h3>
+							<div class="text">Hospitality at its max at RCCG Jesus Throne Apapa Family.</div>
+							<a href="{% url 'about' %}" class="read-more">Read More</a>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+	</section>
+	<!-- End Services Section Two -->
+	
+	<!-- Project Section -->
+
+	<section class="project-section">
+		<div class="auto-container">
+			<!-- Title Box -->
+			<div class="title-box">
+				<h2>Our Latest Projects</h2>
+			</div>
+		</div>
+		
+		<div class="outer-container">
+			
+			<!--Isotope Galery-->
+            <div class="sortable-masonry">
+                
+                <!--Filter-->
+                <div class="filters clearfix">
+                	
+                	<ul class="filter-tabs filter-btns text-center clearfix">
+                        <li class="active filter" data-role="button" data-filter=".all">All Projects</li>
+						{% for projects in project %}
+						<li class="filter" data-role="button" data-filter=".{{ projects.project_type }}">{{ projects.project_type }}</li>
+						{% endfor %}
+                    </ul>
+                    
+                </div>
+                
+				<div class="items-container row clearfix">
+				
+					{% for projects in project|slice:":3" %}
+					<div class="gallery-item small-block {{ projects.project_type }} ">
+						<div class="inner-box">
+							<figure class="image-box">
+								<img src="{{ projects.project_image.url }}" alt="">
+								<!--Overlay Box-->
+								<div class="overlay-box">
+									<div class="overlay-inner">
+										<div class="content">
+											<h3><a href="">{{ projects.project_title }}</a></h3>
+											<a href="{{ projects.project_image.url }}" data-fancybox="gallery-4" data-caption="" class="link"><span class="icon flaticon-magnifying-glass-1"></span></a>
+											<a href="" class="link"><span class="icon flaticon-unlink"></span></a>
+										</div>
+									</div>
+								</div>
+							</figure>
+						</div>
+					</div>
+					{% endfor %}
+					
+					
+					
+					
+					<!-- Gallery Item -->
+					<div class="gallery-item small-block masonry-item all hospital office">
+						<div class="inner-box">
+							<figure class="image-box">
+								<img src="images/gallery/6.jpg" alt="">
+								<!--Overlay Box-->
+								<div class="overlay-box">
+									<div class="overlay-inner">
+										<div class="content">
+											<h3><a href="#">Modular Kitchen</a></h3>
+											<a href="images/gallery/6.jpg" data-fancybox="gallery-1" data-caption="" class="link"><span class="icon flaticon-magnifying-glass-1"></span></a>
+											<a href="" class="link"><span class="icon flaticon-unlink"></span></a>
+										</div>
+									</div>
+								</div>
+							</figure>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		
+			<!-- More Projects -->
+			<div class="more-projects">
+				<a href="{% url 'project' %}" class="projects">View All Projects</a>
+			</div>
+		
+		</div>
+	</section>
+	<!-- End Project Section -->
+	
+	<!-- Fluid Section One -->
+    <section class="fluid-section-one">
+    	<div class="outer-container clearfix">
+        	
+			<!--Content Column-->
+			<div class="content-column">
+				<div class="content-box">
+					<h2>Our Vision statements</h2>
+					<div class="text"><i>The purpose of RCCG Apapa Family (Oyo).</i></div>
+					<h3 class="text">RCCG JESUS EMBASSSY EXISTS:</h3>
+					<ul class="list-style-one">
+						<li>To celebrate God's Presence(WORSHIP).</li>
+						<li>To demonstrate God's Love(MINISTRY).</li>
+						<li>To communicate God's Word(EVANGELISM)</li>
+						<li>To assumilate into God's Family(FELLOWSHIP).</li>
+						<li>To educate God's People (DISCIPLESHIP).</li>
+						
+					</ul>
+					<hr>
+
+					<div>
+						<h2 class="">OUR MISSION STATEMENT <br><i>What we practice</i></h2>
+							
+						<h3 class="text"><b>Excellence in life and ministry, influencing the world.</b></h3>
+					</div>
+					<hr>
+					<div class="bold-text">Worship with us this Sunday at Jesus Throne Parish, Apapa Family Oyo 22, Ire-Akari Soka Ibadan or join any of our weekly service on Tuesday or Thursday. <br> <a href="">locate us today</a></div>
+				</div>
+			</div>
+			
+			<!--Image Column-->
+        	<div class="image-column" style="background-image: url({% static 'home/resource/img2.jpg' %})">
+				<div class="inner-column">
+					<div class="image">
+						<img src="{% static 'home/resource/img2.jpg' %}" alt="">
+					</div>
+					<a href="https://www.youtube.com/" class="overlay-link lightbox-image">
+						<div class="icon-box">
+							<span class="icon flaticon-play-button"></span>
+                            <i class="ripple"></i>
+						</div>
+					</a>
+				</div>
+            </div>
+            <!--End Image Column-->
+			
+		</div>
+	</section>
+	
+	<!-- Testimonial Section -->
+	<section class="testimonial-section">
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title-two centered">
+				<h2>Pastorates in charge of the church</h2>
+				<div class="title-text">Meet the pastor in charge of the church and other ministers contributing to the workforce of the Lord</div>
+			</div>
+			
+			<div class="testimonial-carousel owl-carousel owl-theme">
+				
+				<!-- ministers info Block -->
+				{% for minist in minister %}
+				<div class="testimonial-block">
+					<div class="inner-box">
+						<div class="content">
+							<div class="image-outer">
+								<div class="image">
+									<img src="{{ minist.minister_pic.url }}" alt="" />
+								</div>
+							</div>
+							<h3>{{ minist.minister_name }}</h3>
+							<div class="title">{{ minist.minister_title }}</div>
+							<div class="text">{{ minist.minister_info }}</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				
+			</div>
+		</div>
+	</section>
+	<!-- End Testimonial Section -->
+	
+	<!-- Featured Section -->
+	<section class="featured-section" style="background-image: url(images/background/2.jpg)">
+		<div class="auto-container">
+			<!-- Title Box -->
+			<div class="title-box">
+				<h2>Our Work Process</h2>
+			</div>
+			
+			<div class="row clearfix">
+				
+				<!-- Feature Block -->
+				{% for process in our_work_process %}
+				<div class="feature-block col-lg-3 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="icon-outer">
+							<div class="icon-box">
+								<span class="icon flaticon-{{ process.work_process_icon }}"></span>
+							</div>
+							<div class="feature-number">{{ process.process_id }}</div>
+						</div>
+						<div class="lower-content">
+							<h3><a href="#">{{ process.work_process_title }}</a></h3>
+							<div class="text">{{ process.work_process_content }}</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				
+				
+			</div>
+			
+		</div>
+	</section>
+	<!-- End Featured Section -->
+	
+	<!-- News Section -->
+	<section class="news-section">
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title">
+				<h2>Latest Blog/Updates</h2>
+				<div class="text">See latest updates and daily manuals</div>
+			</div>
+			
+			<div class="row clearfix">
+				
+				<!-- News Block -->
+				{% for blog in blogs|slice:":3" %}
+				<div class="news-block col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="image">
+							<a href=""><img src="{{ blog.blog_image.url }}" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							<ul class="post-meta">
+								<li>by <span>{{ blog.author }}</span></li>
+								<li>{{ blog.blog_title }}</li>
+							</ul>
+							<h3><a href="{% url 'blog-detail' blog.id %}">{{ blog.blog_description|slice:":150" }}....</a></h3>
+							<a href="{% url 'blog-detail' blog.id %}" class="read-more">Read more <span class="icon flaticon-right-arrow-1"></span></a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				
+			</div>
+			
+		</div>
+	</section>
+	<!-- End News Section -->
+	
+	<!-- Call To Action Section -->
+	<section class="call-to-action-section" style="background-image: url({% static 'home/resource/order6.png' %})">
+		<div class="auto-container">
+			<h2>RCCG JESUS THRONE <br>APAPA FAMILY, IBADAN.</h2>
+			<div class="text">Among the weak in faith I become weak like one of them, <br> in order to win them. So i become all things to all people, that I may save some of them by whatever means are possible. <br>All this I do for the gospel's sake, in order to share in its blessings. <br><i>1 Corithians 9:22-23 (GNB).</i></div>
+			<a href="{% url 'contact' %}" class="theme-btn btn-style-two"><span class="txt">contact us</span></a>
+		</div>
+	</section>
+	<!-- End Call To Action Section -->
+	
+	<!--Main Footer-->
+    <footer class="main-footer">
+		<div class="auto-container">
+        	<!--Widgets Section-->
+            <div class="widgets-section">
+            	<div class="row clearfix">
+                	
+                    <!--big column-->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+                        
+                            <!--Footer Column-->
+                            <div class="footer-column col-lg-7 col-md-6 col-sm-12">
+                                <div class="footer-widget logo-widget">
+									<div class="logo">
+                                    	<a href="{% url 'home' %}"><img src="{% static 'home/images/rlogo.png' %}" alt="" /></a>
+                                    </div>
+                                    <div class="text">Jesus Embassy is to reach non-believers in the city of Ibadan and beyond, to connect them with other christians, to help them grow in their faith, to challenge the growing believers to discover their ministry, and to honour God with their lives.</div>
+                                    <ul class="social-icons">
+                                        <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+                                        <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
+                                        <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                                        <li><a href="#"><span class="fab fa-google-plus-g"></span></a></li>
+                                    </ul>
+								</div>
+							</div>
+							
+							<!--Footer Column-->
+                            <div class="footer-column col-lg-5 col-md-6 col-sm-12">
+                                <div class="footer-widget links-widget">
+                                	<h2>Quick links</h2>
+									<div class="widget-content">
+										<ul class="list">
+                                        	<li><a href="{% url 'about' %}">About Jesus Throne</a></li>
+                                            <li><a href="#">Privacy Policy</a></li>
+                                            <li><a href="{% url 'blog' %}">Blog & Updates</a></li>
+                                            <li><a href="{% url 'onlinegiving' %}">Online Giving</a></li>
+                                        </ul>
+                                    </div>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+					
+					<!--big column-->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+                        
+                            <!--Footer Column-->
+                            <div class="footer-column col-lg-5 col-md-6 col-sm-12">
+                                <div class="footer-widget contact-widget">
+									<h2>Contact Info</h2>
+									<div class="widget-content">
+										{% for church_info in church_infos %}
+										<a href="tel:{{ church_info.church_mobile }}" class="contact-number">{{ church_info.church_mobile }}</a>
+										{% endfor %}
+										<ul>
+											{% for church_info in church_infos %}
+											<li>{{ church_info.church_address }}</li>
+											<li>Email :<a href="mailto:{{ church_info.church_mail }}"> {{ church_info.church_mail }}</a></li>
+											{% endfor %}
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<!--Footer Column-->
+                            <div class="footer-column col-lg-7 col-md-6 col-sm-12">
+                                <div class="footer-widget newsletter-widget">
+                                	<h2>Newsletter</h2>
+									<div class="text">Subscribe to our sunday sermon clips</div>
+									<!-- Newsletter Form -->
+									<div class="newsletter-form">
+										<form method="post">
+                                            {% csrf_token %}
+											<div class="form-group">
+												{{ form_subscibe|crispy }}
+												<button type="submit" class="theme-btn btn-style-one"><span class="txt">Subscribe</span></button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+			<!--Footer Bottom-->
+            <div class="footer-bottom clearfix">
+                <div class="pull-left">
+					{% for church_info in church_infos %}
+                    	<div class="copyright"><a href="">{{ church_info.church_name }}</a></div>
+					{% endfor %}
+					<p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> 
+                </div>
+                <div class="pull-right">
+                    <p>powered by <a href="">swirloma</a>
+                </div>
+            </div>
+			
+		</div>
+	</footer>
+	
+</div>  
+<!--End pagewrapper-->
+
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
+
+<!--Search Popup-->
+<div id="search-popup" class="search-popup">
+	<div class="close-search theme-btn"><span class="flaticon-cancel"></span></div>
+	<div class="popup-inner">
+		<div class="overlay-layer"></div>
+    	<div class="search-form">
+        	<form method="post" action={% url 'blog' %}">
+            	<div class="form-group">
+                	<fieldset>
+                        <input type="search" class="form-control" name="search-input" value="" placeholder="Search Here" required >
+                        <input type="submit" value="Search Now!" class="theme-btn">
+                    </fieldset>
+                </div>
+            </form>
+            
+            <br>
+            <h3>Recent Search Keywords</h3>
+            <ul class="recent-searches">
+                <li><a href="#">Sunday service</a></li>
+                <li><a href="#">Open Heavens</a></li>
+                <li><a href="#">Digging Deep</a></li>
+                <li><a href="#">Pator Ayo Oghoba</a></li>
+                <li><a href="#">Holy Ghost service</a></li>
+            </ul>
+        
+        </div>
+        
+    </div>
+</div>
+
+<!--Scroll to top-->
+<script src="{% static 'home/js/jquery.js' %}"></script>
+<script src="{% static 'home/js/popper.min.js' %}"></script>
+<script src="{% static 'home/js/jquery-ui.js' %}"></script>
+<script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'home/js/jquery.fancybox.js' %}"></script>
+<script src="{% static 'home/js/isotope.js' %}"></script>
+<script src="{% static 'home/js/owl.js' %}"></script>
+<script src="{% static 'home/js/wow.js' %}"></script>
+<script src="{% static 'home/js/appear.js' %}"></script>
+<script src="{% static 'home/js/scrollbar.js' %}"></script>
+<script src="{% static 'home/js/script.js' %}"></script>
+</body>
+
+</html>
